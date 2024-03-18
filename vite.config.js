@@ -14,7 +14,12 @@ const viteServerConfig = {
 const config = {
 	plugins: [viteServerConfig],
 
-	// other configurations...
+	optimizeDeps: {
+    	exclude: ['@mkkellogg/gaussian-splats-3d'],
+  	},
+  	build: {
+    	target: "es2022"
+  	},
 };
 
 export default config;
