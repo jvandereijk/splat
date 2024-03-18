@@ -1,0 +1,21 @@
+{
+	"name": "splat-markers",
+	"version": "0.0.1",
+	"source": "source/index.html",
+	"scripts": {
+		"start": "npx vite --config vite.config.js source",
+		"build": "parcel build --dist-dir dist --public-url ."
+	},
+	"dependencies": {
+		"@mkkellogg/gaussian-splats-3d": "^0.3.4",
+		"three": "^0.162.0"
+	},
+	"devDependencies": {
+		"@parcel/packager-raw-url": "^2.11.0",
+		"@parcel/transformer-webmanifest": "^2.11.0",
+		"eslint": "^8.57.0",
+		"parcel": "^2.11.0",
+		"parcel-reporter-static-files-copy": "^1.5.2",
+		"vite": "^5.1.3"
+	}
+}

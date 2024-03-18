@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+	</head>
+
+	<body>
+		<script type="module">
+			//import * as GaussianSplats3D from "./gaussian-splats-3d.module.js";
+			import * as GaussianSplats3D from "@mkkellogg/gaussian-splats-3d";
+
+			const viewer = new GaussianSplats3D.Viewer({
+				cameraUp: [0, -1, -0.6],
+				initialCameraPosition: [-1, -4, 6],
+				initialCameraLookAt: [0, 4, 0],
+			});
+			viewer
+				.addSplatScene(
+					"https://huggingface.co/cakewalk/splat-data/resolve/main/train.splat",
+					{
+						splatAlphaRemovalThreshold: 5,
+						showLoadingUI: true,
+						position: [0, 1, 0],
+						rotation: [0, 0, 0, 1],
+						scale: [1.5, 1.5, 1.5],
+					}
+				)
+				.then(() => {
+					viewer.start();
+				});
+		</script>
+	</body>
+</html>
