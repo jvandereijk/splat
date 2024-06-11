@@ -11,23 +11,27 @@
 		<script type="module">
 			import * as GaussianSplats3D from "@mkkellogg/gaussian-splats-3d";
 
-			const viewer = new GaussianSplats3D.Viewer({
+
+			let viewer  = new GaussianSplats3D.Viewer({
 				cameraUp: [0, -1, 0],
-				initialCameraPosition: [-4, -1, 1],
+				initialCameraPosition: [-2, 2, 1],
 				initialCameraLookAt: [0, 0, 0],
 			});
+
 			viewer
-				.addSplatScene(
-					"https://www.mediamarc.nl/nerf/splat/yacht3.cropped.5x.splat",
-					{
+				.addSplatScenes(					
+					[{
+						path: "https://www.mediamarc.nl/nerf/splat/tesla.sf.splat",
+						showLoadingUI: false,
 						splatAlphaRemovalThreshold: 5,
-						showLoadingUI: true,
-						//streamView: true,
-					}
+						progressiveLoad: true
+					}]
 				)
 				.then(() => {
 					viewer.start();
-				});
+			});
+			
 		</script>
+		
 	</body>
 </html>
