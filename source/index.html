@@ -10,20 +10,16 @@
 	<body>
 		<div id="root"></div>
 		<script type="module">
-			import * as GaussianSplats3D from "@mkkellogg/gaussian-splats-3d";
-			
+			import * as GaussianSplats3D from "@mkkellogg/gaussian-splats-3d";			
 
 			const viewer  = new GaussianSplats3D.Viewer({				
 				initialCameraPosition: [-1, 2, 1],
 				initialCameraLookAt: [0, 0, 0],
-				selfDrivenMode: true,
-				enableOptionalEffects: true,
-				
 			});
 
 			viewer.addSplatScenes(					
 					[{
-						path: "https://www.mediamarc.nl/nerf/splat/CLIENTS/PIV/leegveld.cleaned4.crop.compressed.ply",// "https://www.mediamarc.nl/nerf/splat/converted_file.ksplat",//"https://www.mediamarc.nl/nerf/splat/tesla.sf.splat",
+						path: "https://www.mediamarc.nl/nerf/splat/CLIENTS/PIV/leegveld.cleaned4.crop.compressed.ply",
 						splatAlphaRemovalThreshold: 5,
 						progressiveLoad: true,
 						scale: [10, 10,10],
