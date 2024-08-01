@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html style="background-color:black;">
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="module">
+			import * as GaussianSplats3D from "@mkkellogg/gaussian-splats-3d";
+			import * as THREE from 'three';
+			import { TransformControls } from 'three/addons/controls/TransformControls.js';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+
+			const rootElement = document.getElementById("root")
+			const scene = new THREE.Scene()
+
+			const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+			camera.position.z = 2
+			camera.position.y = -2
+
+			const renderer = new THREE.WebGLRenderer()
+			renderer.setSize(window.innerWidth, window.innerHeight)
+			document.body.appendChild(renderer.domElement)
+
+			window.addEventListener('resize', () => {
+				camera.aspect = window.innerWidth / window.innerHeight
+				camera.updateProjectionMatrix()
+				renderer.setSize(window.innerWidth, window.innerHeight)
+			})
+
+			const transformControl = new TransformControls(camera, renderer.domElement)
+
+			const geometry = new THREE.BoxGeometry()
+			const material = new THREE.MeshNormalMaterial({ wireframe: true })
+
+			const cube = new THREE.Mesh(geometry, material)
+			scene.add(cube)
+
+			function animate() {
+				requestAnimationFrame(animate)
+				
+				renderer.render(transformControl, camera)
+				viewer.update()
+				viewer.render()				
+				
+			}
+
+			rootElement.appendChild(renderer.domElement)
+
+
+			const viewer  = new GaussianSplats3D.Viewer({
+				rootElement,
+				threeScene: scene,
+				renderer,
+				camera,
+				//cameraUp: [0, -1, 0],
+				//initialCameraPosition: [-1, 2, 1],
+				//initialCameraLookAt: [0, 0, 0],
+				//dynamicScene: true, 
+				selfDrivenMode: true,
+				//enableOptionalEffects: true,
+				
+			});
+
+			viewer.addSplatScenes(					
+					[{
+						path: "https://www.mediamarc.nl/nerf/splat/CLIENTS/PIV/leegveld.cleaned4.crop.compressed.ply",// "https://www.mediamarc.nl/nerf/splat/converted_file.ksplat",//"https://www.mediamarc.nl/nerf/splat/tesla.sf.splat",
+						splatAlphaRemovalThreshold: 5,						
+					}], false
+				)
+				.then(() => {
+					viewer.start();
+					requestAnimationFrame(animate)
+			});
+			
+	
+
+		
+
+		</script>
+		
+	</body>
+</html>

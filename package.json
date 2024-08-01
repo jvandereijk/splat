@@ -7,7 +7,7 @@
 		"build": "parcel build --dist-dir dist --public-url ."
 	},
 	"dependencies": {
-		"@mkkellogg/gaussian-splats-3d": "^0.4.2",
+		"@mkkellogg/gaussian-splats-3d": "^0.4.3",
 		"three": "^0.162.0"
 	},
 	"devDependencies": {
